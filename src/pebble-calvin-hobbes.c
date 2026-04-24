@@ -44,16 +44,21 @@ static void battery_handler(BatteryChargeState charge_state) {
   }
   layer_set_hidden(bitmap_layer_get_layer(s_charging_layer), !charge_state.is_charging);
   text_layer_set_text(s_battery_layer, s_battery_buffer);
+  layer_set_hidden(text_layer_get_layer(s_battery_layer), (charge_state.charge_percent > 30));
 }
 
 static void main_window_load(Window *window) {
 
-  s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BACKGROUND);
-  s_background_layer = bitmap_layer_create(GRect(0, 0, 144, 168));
+  #if PBL_DISPLAY_HEIGHT == 228
+    s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BACKGROUND_PT2);
+  #elif PBL_DISPLAY_HEIGHT == 168
+    s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BACKGROUND);
+  #endif
+  s_background_layer = bitmap_layer_create(GRect(0, 0, PBL_DISPLAY_WIDTH, PBL_DISPLAY_HEIGHT));
   bitmap_layer_set_bitmap(s_background_layer, s_background_bitmap);
   layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_background_layer));
 
-  s_time_layer = text_layer_create(GRect(0, 25, 144, 168));
+  s_time_layer = text_layer_create(GRect(0, 25, PBL_DISPLAY_WIDTH, PBL_DISPLAY_HEIGHT));
   text_layer_set_background_color(s_time_layer, GColorClear);
   text_layer_set_text_color(s_time_layer, GColorWhite);
   text_layer_set_text(s_time_layer, "00:00");
@@ -62,7 +67,7 @@ static void main_window_load(Window *window) {
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentCenter);
   layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_time_layer));
 
-  s_date_layer = text_layer_create(GRect(0, 65, 144, 168));
+  s_date_layer = text_layer_create(GRect(0, 65, PBL_DISPLAY_WIDTH, PBL_DISPLAY_HEIGHT));
   text_layer_set_background_color(s_date_layer, GColorClear);
   text_layer_set_text_color(s_date_layer, GColorWhite);
   text_layer_set_text(s_date_layer, "MON 00");
