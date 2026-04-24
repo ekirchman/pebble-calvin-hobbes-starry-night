@@ -77,12 +77,12 @@ static void main_window_load(Window *window) {
   layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_date_layer));
 
   s_charging_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_CHARGING_WHITE);
-  s_charging_layer = bitmap_layer_create(GRect(127, 2, 10, 20));
+  s_charging_layer = bitmap_layer_create(GRect(PBL_DISPLAY_WIDTH-17, 2, 10, 20));
   bitmap_layer_set_bitmap(s_charging_layer, s_charging_bitmap);
   bitmap_layer_set_compositing_mode(s_charging_layer, GCompOpOr);
   layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_charging_layer));
 
-  s_battery_layer = text_layer_create(GRect(0, -1, 141, 160));
+  s_battery_layer = text_layer_create(GRect(0, -1, PBL_DISPLAY_WIDTH-3, PBL_DISPLAY_HEIGHT-8));
   text_layer_set_background_color(s_battery_layer, GColorClear);
   text_layer_set_text_color(s_battery_layer, GColorWhite);
   text_layer_set_text(s_battery_layer, "--%");
