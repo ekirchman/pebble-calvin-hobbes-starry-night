@@ -55,6 +55,8 @@ static void main_window_load(Window *window) {
     s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BACKGROUND);
   #elif PBL_DISPLAY_HEIGHT == 260
     s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BACKGROUND_PR2);
+  #elif PBL_DISPLAY_HEIGHT == 180
+    s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BACKGROUND_PR);
   #endif
   s_background_layer = bitmap_layer_create(GRect(0, 0, PBL_DISPLAY_WIDTH, PBL_DISPLAY_HEIGHT));
   bitmap_layer_set_bitmap(s_background_layer, s_background_bitmap);
@@ -79,7 +81,7 @@ static void main_window_load(Window *window) {
   layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_date_layer));
 
   s_charging_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_CHARGING_WHITE);
-  #if PBL_DISPLAY_HEIGHT == 260
+  #if PBL_DISPLAY_HEIGHT == 260 || PBL_DISPLAY_HEIGHT == 180
     s_charging_layer = bitmap_layer_create(GRect((PBL_DISPLAY_WIDTH/2)-4, 2, 10, 20));
   #else
     s_charging_layer = bitmap_layer_create(GRect(PBL_DISPLAY_WIDTH-17, 2, 10, 20));
@@ -88,7 +90,7 @@ static void main_window_load(Window *window) {
   bitmap_layer_set_compositing_mode(s_charging_layer, GCompOpOr);
   layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_charging_layer));
 
-  #if PBL_DISPLAY_HEIGHT == 260
+  #if PBL_DISPLAY_HEIGHT == 260 || PBL_DISPLAY_HEIGHT == 180
     s_battery_layer = text_layer_create(GRect(0, -1, (PBL_DISPLAY_WIDTH/2)+20, PBL_DISPLAY_HEIGHT-8));
   #else
     s_battery_layer = text_layer_create(GRect(0, -1, PBL_DISPLAY_WIDTH-3, PBL_DISPLAY_HEIGHT-8));
