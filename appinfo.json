@@ -5,7 +5,7 @@
   "companyName": "Florencia Tarditti",
   "versionLabel": "1.0",
   "sdkVersion": "3",
-  "targetPlatforms": ["aplite", "flint", "basalt", "emery"],
+  "targetPlatforms": ["aplite", "flint", "basalt", "emery", "gabbro", "chalk"],
   "watchapp": {
     "watchface": true
   },
@@ -20,6 +20,16 @@
         "type": "png",
         "name": "IMAGE_BACKGROUND_PT2",
         "file": "images/calvin_hobbes_pt2.png"
+      },
+      {
+        "type": "png",
+        "name": "IMAGE_BACKGROUND_PR2",
+        "file": "images/calvin_hobbes_pr2.png"
+      },
+      {
+        "type": "png",
+        "name": "IMAGE_BACKGROUND_PR",
+        "file": "images/calvin_hobbes_chalk.png"
       },
       {
         "type": "png-trans",
